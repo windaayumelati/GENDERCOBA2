@@ -252,30 +252,28 @@ def app(df, x, y):
         st.write("Menggunakan implementasi k-NN dengan modul statistics")
         st.write("Kustomisasi plot sesuai")
 
-    # Pilih fitur untuk visualisasi
-    feature_options = x.columns.tolist()
-    selected_features = st.multiselect('Pilih fitur untuk visualisasi',
-                                       feature_options,
-                                       default=[feature_options[0], feature_options[1]],
-                                       key="multiselect_features")  # Add a unique key here
+        # Pilih fitur untuk visualisasi
+        feature_options = x.columns.tolist()
+        selected_features = st.multiselect('Pilih fitur untuk visualisasi',
+                                        feature_options,
+                                        default=[feature_options[0], feature_options[1]],
+                                        key="multiselect_features")  # Add a unique key here
 
-    # Input nilai K yang diinginkan
-    k_value = st.slider('Pilih Nilai K', 1, 20, 3)
+        # Input nilai K yang diinginkan
+        k_value = st.slider('Pilih Nilai K', 1, 20, 3)
 
-    # Check the number of selected features
-    if len(selected_features) != 2:
-        st.warning("Pilih tepat dua fitur untuk visualisasi K-Nearest Neighbors.")
-    else:
-        # Input nilai x1 dan x2
-        x1_value = st.slider('Nilai value x1', float(x[selected_features[0]].min()),
-                            float(x[selected_features[0]].max()), float(x[selected_features[0]].mean()))
-        x2_value = st.slider('Nilai value x2', float(x[selected_features[1]].min()),
-                             float(x[selected_features[1]].max()), float(x[selected_features[1]].mean()))
+        # Check the number of selected features
+        if len(selected_features) != 2:
+            st.warning("Pilih tepat dua fitur untuk visualisasi K-Nearest Neighbors.")
+        else:
+            # Input nilai x1 dan x2
+            x1_value = st.slider('Nilai value x1', float(x[selected_features[0]].min()),
+                                float(x[selected_features[0]].max()), float(x[selected_features[0]].mean()))
+            x2_value = st.slider('Nilai value x2', float(x[selected_features[1]].min()),
+                                float(x[selected_features[1]].max()), float(x[selected_features[1]].mean()))
 
-        result = plot_kneighbors_scatter_statistic(df, k_value, selected_features, x1_value, x2_value)
-        st.write(result)
-
-
+            result = plot_kneighbors_scatter_statistic(df, k_value, selected_features, x1_value, x2_value)
+            st.write(result)
 
     if st.checkbox("Plot ROC Curve"):
         st.write("Menggunakan data yang dihasilkan dari model")
