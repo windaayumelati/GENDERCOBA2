@@ -1,5 +1,5 @@
 numpy
-seaborn
+!pip install seaborn
 pandas
 scikit-learn
 streamlit
