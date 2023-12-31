@@ -86,22 +86,40 @@ def plot_kneighbors_scatter_statistic(df, k, features, x1, x2):
     colors = {0: palette[0], 1: palette[1]}
 
     fig, ax = plt.subplots(figsize=(15, 8))
-    sns.scatterplot(data=df, x=features[0], y=features[1], hue='gender', alpha=0.9, s=250, palette=palette, ax=ax)
 
-    for i in index:
-        target_value = df.gender.iloc[i]
-        if isinstance(target_value, (int, float)):
-            color = colors[int(target_value)]
-        else:
-            color = 'gray'
-        ax.scatter(x=df[features[0]].iloc[i], y=df[features[1]].iloc[i], s=250, alpha=0.6, linewidth=2, edgecolor='k', color=color)
+    if pd.api.types.is_numeric_dtype(df[features[0]]) and pd.api.types.is_numeric_dtype(df[features[1]]):
+        sns.scatterplot(data=df, x=features[0], y=features[1], hue='gender', alpha=0.9, s=250, palette=palette, ax=ax)
 
-    ax.scatter(x=x1, y=x2, s=400, marker='*', color='k')
-    ax.set_title(label=f'K-Nearest Neighbor with K = {k}', fontsize=14)
-    ax.set_axis_off()
-    st.pyplot()
+        for i in index:
+            target_value = df.gender.iloc[i]
+            if isinstance(target_value, (int, float)):
+                color = colors[int(target_value)]
+            else:
+                color = 'gray'
+            ax.scatter(x=df[features[0]].iloc[i], y=df[features[1]].iloc[i], s=250, alpha=0.6, linewidth=2, edgecolor='k', color=color)
+
+        ax.scatter(x=x1, y=x2, s=400, marker='*', color='k')
+        ax.set_title(label=f'K-Nearest Neighbor with K = {k}', fontsize=14)
+        st.pyplot()
+
+    else:
+        sns.scatterplot(data=df, x=features[0], y=features[1], hue='gender', alpha=0.9, s=250, palette=palette, ax=ax)
+
+        for i in index:
+            target_value = df.gender.iloc[i]
+            if isinstance(target_value, (int, float)):
+                color = colors[int(target_value)]
+            else:
+                color = 'gray'
+            ax.scatter(x=df[features[0]].iloc[i], y=df[features[1]].iloc[i], s=250, alpha=0.6, linewidth=2, edgecolor='k', color=color)
+
+        ax.scatter(x=x1, y=x2, s=400, marker='*', color='k')
+        ax.set_title(label=f'K-Nearest Neighbor with K = {k}', fontsize=14)
+        ax.set_xticks([])  # Hide xticks for non-numeric data
+        st.pyplot()
 
     return f'Predictions: {label}'
+
 
 
 # Fungsi untuk membuat ROC Curve
