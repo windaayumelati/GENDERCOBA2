@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 import streamlit as st
 
-st.cache_data ()
+st.cache()
 def load_data():
 
     #load dataset
@@ -15,7 +15,7 @@ def load_data():
 
     return df, x, y
 
-st.cache_data ()
+st.cache()
 def train_model(x,y):
     model=KNeighborsClassifier(n_neighbors=3)
     
