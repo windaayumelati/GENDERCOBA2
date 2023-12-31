@@ -4,7 +4,3 @@ scikit-learn==0.24.2
 streamlit==0.82.0
 matplotlib==3.4.2
 seaborn==0.11.2
-
-git add requirements.txt
-git commit -m "Update requirements.txt"
-git push origin master  # Ganti 'master' dengan nama branch yang sesuai jika menggunakan branch lain
