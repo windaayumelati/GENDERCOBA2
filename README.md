@@ -14,7 +14,6 @@ Bagian laporan ini mencakup:
 
 ### Problem Statements
 1. Bagaimana fitur-fitur karakteristik wajah, seperti panjang rambut, dimensi dahi, hidung, bibir, dan jarak antara hidung dan bibir, dapat memengaruhi tingkat akurasi dalam prediksi jenis kelamin?
-
 2. Bagaimana cara menbuat model prediksi gender yang mampu memberikan prediksi yang akurat dan dapat diandalkan?
 
 
