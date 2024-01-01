@@ -14,7 +14,8 @@ Bagian laporan ini mencakup:
 
 ### Problem Statements
 1. Bagaimana fitur-fitur karakteristik wajah, seperti panjang rambut, dimensi dahi, hidung, bibir, dan jarak antara hidung dan bibir, dapat memengaruhi tingkat akurasi dalam prediksi jenis kelamin?
-2. Bagaimana cara menbuat model prediksi gender yang mampu memberikan prediksi yang akurat dan dapat diandalkan?
+
+2. Bagaimana cara mengembangkan model prediksi gender yang mampu memberikan prediksi yang akurat dan dapat diandalkan?
 
 
 ### Goals
@@ -506,14 +507,14 @@ plt.tight_layout()
 plt.show()
 ```
 1. Subplot Pertama (axes[0]):
-  - Menampilkan distribusi lebar dahi (forehead_width_cm) dengan menggunakan histogram dan kurva kepadatan (kernel density estimate - kde).
-  - Warna plot ditentukan sebagai 'gold'.
-  - Judul subplot ditetapkan sebagai 'Forehead Width Distribution'.
+- Menampilkan distribusi lebar dahi (forehead_width_cm) dengan menggunakan histogram dan kurva kepadatan (kernel density estimate - kde).
+- Warna plot ditentukan sebagai 'gold'.
+- Judul subplot ditetapkan sebagai 'Forehead Width Distribution'.
 
 2. Subplot Kedua (axes[1]):
-  - Menampilkan distribusi tinggi dahi (forehead_height_cm) dengan menggunakan histogram dan kurva kepadatan (kde).
-  - Warna plot ditentukan sebagai 'lightcoral'.
-  - Judul subplot ditetapkan sebagai 'Forehead Height Distribution'.
+- Menampilkan distribusi tinggi dahi (forehead_height_cm) dengan menggunakan histogram dan kurva kepadatan (kde).
+- Warna plot ditentukan sebagai 'lightcoral'.
+- Judul subplot ditetapkan sebagai 'Forehead Height Distribution'.
 
 ![Alt text](image-26.png)
 
@@ -660,7 +661,7 @@ print(y.shape)
 
 ![Alt text](image-35.png)
 
-## Modeling
+##Modeling
 Selanjutnya kita lanjut ke Modelling
 
 - Selanjutnya yaitu melakukan split data, yaitu memisahkan data training dan data testing dengan script seperti berikut:
@@ -738,21 +739,21 @@ pd.crosstab(y_test, y_pred, rownames=['True'], colnames=['gender'], margins=True
 
 Confusion Matrix adalah sebuah matriks yang digunakan untuk mengevaluasi kinerja dari suatu sistem klasifikasi. Matriks ini membandingkan hasil klasifikasi model dengan nilai sebenarnya dari data yang diuji.
 
-    Berikut adalah komponen-komponen utama dari Confusion Matrix:
+Berikut adalah komponen-komponen utama dari Confusion Matrix:
 
-    - True Positive (TP):
-        Jumlah observasi yang benar-benar positif dan diklasifikasikan sebagai positif oleh model.
+- True Positive (TP):
+    Jumlah observasi yang benar-benar positif dan diklasifikasikan sebagai positif oleh model.
 
-    - True Negative (TN):
-        Jumlah observasi yang benar-benar negatif dan diklasifikasikan sebagai negatif oleh model.
+- True Negative (TN):
+    Jumlah observasi yang benar-benar negatif dan diklasifikasikan sebagai negatif oleh model.
 
-    - False Positive (FP):
-        Jumlah observasi yang sebenarnya negatif, tetapi salah diklasifikasikan sebagai positif oleh model (kesalahan Type I).
+- False Positive (FP):
+    Jumlah observasi yang sebenarnya negatif, tetapi salah diklasifikasikan sebagai positif oleh model (kesalahan Type I).
 
-    - False Negative (FN):
-        Jumlah observasi yang sebenarnya positif, tetapi salah diklasifikasikan sebagai negatif oleh model (kesalahan Type II).
+- False Negative (FN):
+    Jumlah observasi yang sebenarnya positif, tetapi salah diklasifikasikan sebagai negatif oleh model (kesalahan Type II).
         
-        ![Alt text](image-52.png)
+    ![Alt text](image-52.png)
 
 Ini merupakan Hasil Confussion Matrix dari Prediksi Gender Mengunakan KNN. 
 Kita bisa membuatnya menggunakan kode:
@@ -781,17 +782,17 @@ Classification Report menyajikan metrik-metrik seperti Presisi, Recall, dan F1 S
 **3. Cv scores**
 Cross-validation (CV) scores adalah elemen penting dalam evaluasi model, membantu memastikan bahwa performa model dapat diukur dengan lebih reliabel. Proses ini melibatkan beberapa langkah:
 
-    - **Pembagian Data:**
-    Data dibagi menjadi beberapa subset yang disebut lipatan atau "folds." Proses ini memastikan bahwa setiap bagian data digunakan baik sebagai data pelatihan maupun data pengujian.
+- **Pembagian Data:**
+Data dibagi menjadi beberapa subset yang disebut lipatan atau "folds." Proses ini memastikan bahwa setiap bagian data digunakan baik sebagai data pelatihan maupun data pengujian.
 
-    - **Pelatihan dan Pengujian Model:**
-    Model dilatih menggunakan beberapa kombinasi lipatan sebagai data pelatihan dan diuji pada lipatan yang tersisa sebagai data pengujian. Proses ini diulangi sejumlah lipatan, dan skor kinerja dicatat pada setiap iterasi.
+- **Pelatihan dan Pengujian Model:**
+Model dilatih menggunakan beberapa kombinasi lipatan sebagai data pelatihan dan diuji pada lipatan yang tersisa sebagai data pengujian. Proses ini diulangi sejumlah lipatan, dan skor kinerja dicatat pada setiap iterasi.
 
-    - **CV Scores:**
-     CV scores adalah hasil dari metrik evaluasi model pada setiap lipatan. Biasanya, ini mencakup akurasi, presisi, recall, F1-score, atau metrik evaluasi lainnya yang relevan dengan jenis masalah yang dihadapi.
+ - **CV Scores:**
+ CV scores adalah hasil dari metrik evaluasi model pada setiap lipatan. Biasanya, ini mencakup akurasi, presisi, recall, F1-score, atau metrik evaluasi lainnya yang relevan dengan jenis masalah yang dihadapi.
 
-    - **Agregasi Skor:**
-     CV scores dari setiap lipatan dapat diambil rata-rata atau agregasi lainnya untuk memberikan skor kinerja akhir model. Ini membantu mengurangi variabilitas dan memberikan gambaran yang lebih konsisten tentang kemampuan model untuk melakukan generalisasi pada data baru.
+- **Agregasi Skor:**
+ CV scores dari setiap lipatan dapat diambil rata-rata atau agregasi lainnya untuk memberikan skor kinerja akhir model. Ini membantu mengurangi variabilitas dan memberikan gambaran yang lebih konsisten tentang kemampuan model untuk melakukan generalisasi pada data baru.
 
 Pentingnya CV scores dalam evaluasi model terletak pada kemampuannya untuk memberikan ukuran kinerja yang lebih konsisten dan dapat dipercaya. Proses ini membantu dalam pemilihan model yang stabil dan menilai seberapa baik model dapat menangani variasi dalam data. Meskipun CV scores memberikan wawasan yang kuat, evaluasi akhir sering melibatkan uji pada set data pengujian yang terpisah untuk memastikan bahwa model dapat berkinerja dengan baik pada data yang belum pernah dilihat sebelumnya.
 
@@ -810,9 +811,10 @@ print("\nAverage 5-Fold Score: {}".format(np.mean(cv_scores)))
 
 ROC AUC (Receiver Operating Characteristic Area Under the Curve) adalah metrik yang mengukur seberapa baik model mampu membedakan antara kelas positif dan negatif. Semakin tinggi nilai ROC AUC, semakin baik model dalam memisahkan kelas-kelas tersebut. Dalam konteks ini, kode menghitung dan mencetak ROC AUC Score untuk model K-Nearest Neighbors.
 
-ROC AUC Score dihitung dari kurva ROC, yang mengukur performa model dalam membedakan antara kelas positif dan negatif. Rumusnya adalah:
-
-\[ \text{ROC AUC Score} = \text{AUC} = \int \text{ROC curve} \, dx \]
+ROC AUC Score dihitung dari kurva ROC, yang mengukur performa model dalam membedakan antara kelas positif dan negatif.
+ 
+Rumusnya adalah:
+![Alt text](image-55.png)
 
 Di sini, ROC curve adalah kurva yang menggambarkan hubungan antara True Positive Rate (TPR atau Recall) dan False Positive Rate (FPR). 
 
@@ -823,9 +825,10 @@ Accuracy Score mengukur seberapa akurat model dalam memprediksi kelas target. In
 
 Namun, penting untuk dicatat bahwa evaluasi ini mungkin bukan evaluasi akhir yang menyeluruh.
 
-Accuracy Score dihitung dengan rumus sederhana sebagai rasio antara prediksi yang benar (True Positives + True Negatives) dengan total jumlah prediksi (semua empat elemen matriks kebingungan). Rumusnya adalah:
+Accuracy Score dihitung dengan rumus sederhana sebagai rasio antara prediksi yang benar (True Positives + True Negatives) dengan total jumlah prediksi (semua empat elemen matriks kebingungan). 
+Rumusnya adalah:
 
-\[ \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{True Positives + False Positives + True Negatives + False Negatives}} \]
+![Alt text](image-56.png)
 
 Accuracy memberikan gambaran tentang seberapa akurat model dalam memprediksi seluruh kelas.
 
@@ -855,7 +858,7 @@ Error Rate adalah metrik evaluasi yang menggambarkan persentase dari keseluruhan
 
 **Rumus Error Rate sederhana dan dapat dihitung sebagai berikut:**
 
-\[ \text{Error Rate} = \frac{\text{Jumlah Prediksi Salah}}{\text{Total Jumlah Prediksi}} \]
+![Alt text](image-57.png)
 
 Di mana:
 - "Jumlah Prediksi Salah" adalah jumlah prediksi yang tidak benar oleh model.
