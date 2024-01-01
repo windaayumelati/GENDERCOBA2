@@ -736,7 +736,7 @@ pd.crosstab(y_test, y_pred, rownames=['True'], colnames=['gender'], margins=True
 
 **1. Menggunakan Confusion Matrix:**
 
-    Confusion Matrix adalah sebuah matriks yang digunakan untuk mengevaluasi kinerja dari suatu sistem klasifikasi. Matriks ini membandingkan hasil klasifikasi model dengan nilai sebenarnya dari data yang diuji.
+Confusion Matrix adalah sebuah matriks yang digunakan untuk mengevaluasi kinerja dari suatu sistem klasifikasi. Matriks ini membandingkan hasil klasifikasi model dengan nilai sebenarnya dari data yang diuji.
 
     Berikut adalah komponen-komponen utama dari Confusion Matrix:
 
