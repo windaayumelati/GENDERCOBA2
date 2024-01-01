@@ -22,7 +22,7 @@ Bagian laporan ini mencakup:
 1. Melakukan analisis mendalam terhadap fitur-fitur karakteristik wajah untuk memahami sejauh mana mereka dapat memberikan kontribusi yang signifikan dalam meningkatkan akurasi prediksi gender.
 2. Membantu mempermudah proses prediksi gender sehingga pengguna dapat dengan mudah dan efisien memperoleh hasil prediksi gender.
 
-###Solution statements
+### Solution statements
 1. Analisis data gender untuk memahami faktor-faktor pengaruhnya.
 2. Mengidentifikasi dan mengoptimalkan algoritma prediksi guna meningkatkan akurasi model. 
 3. Membangun Model prediksi gender berdasarkan dataset yang telah diidentifikasi.
@@ -35,13 +35,13 @@ https://www.kaggle.com/datasets/elakiricoder/gender-classification-dataset
 
 Variabel-variabel pada Dataset Gender Classification adalah sebagai berikut:
 
-- **long_hair (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "rambut panjang" dan 0 menunjukkan "rambut tidak panjang".
+- **long_hair (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "rambut panjang (Yes)" dan 0 menunjukkan "rambut tidak panjang (No)".
 - **forehead_width_cm (Tipe Data: float64)**: Kolom ini diukur dalam sentimeter (CM) dan merepresentasikan lebar dahi.
 - **forehead_height_cm (Tipe Data: float64)**: Kolom ini diukur dalam sentimeter (CM) dan merepresentasikan ketinggian dahi.
-- **nose_wide (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "hidung lebar" dan 0 menunjukkan "hidung tidak lebar".
-- **nose_long (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "hidung panjang" dan 0 menunjukkan "hidung tidak panjang".
-- **lips_thin (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "bibir tipis" dan 0 menunjukkan "bukan bibir tipis".
-- **distance_nose_to_lip_long (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "jarak jauh antara hidung dan bibir" dan 0 menunjukkan "jarak pendek antara hidung dan bibir".
+- **nose_wide (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "hidung lebar (Yes)" dan 0 menunjukkan "hidung tidak lebar (No)".
+- **nose_long (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "hidung panjang (Yes)" dan 0 menunjukkan "hidung tidak panjang (No)".
+- **lips_thin (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "bibir tipis (Yes)" dan 0 menunjukkan "bukan bibir tipis (No)".
+- **distance_nose_to_lip_long (Tipe Data: int64)**: Kolom ini berisi nilai 0 dan 1, di mana 1 menunjukkan "jarak jauh antara hidung dan bibir (Yes)" dan 0 menunjukkan "jarak pendek antara hidung dan bibir (No)".
 - **gender (Tipe Data: object)**: Kolom ini berisi nilai "Pria" atau "Wanita".
 
 ## Data Collection
@@ -49,7 +49,7 @@ Untuk data collection ini, saya menggunakan dataset yang didapatkan dari website
 
 Selanjutnya langsung saja kita ketahap pembuatan model:
 
-###Import Dataset Kaggle
+### Import Dataset Kaggle
 - Langkah pertama kita harus menghubungkan google colab dengan kaggle. kita harus mengimportkan dan mengupload sebuah file yang merupakan token Kaggle agar bisa terhubung dengan kaggle dan agar bisa mendownload sebuah dataset dari kaggle melalui google colab menggunakan script:
 
 ```python
@@ -81,7 +81,7 @@ script:
 !ls gender-classification-dataset
 ```
 
-###Import Library Yang Dibutuhkan
+### Import Library Yang Dibutuhkan
 
 - Langkah selanjutnya kita harus mengimport library yang digunakan/dibutuhkan pada studi kasus ini: 
 
@@ -105,7 +105,7 @@ from sklearn.preprocessing import LabelBinarizer
 import statistics
 ```
 
-###Data Discovery
+### Data Discovery
 - Langkah selanjutnya memanggil dataset menggunakan perintah:
 
 ```python
@@ -123,7 +123,8 @@ df.sample()
 ```python
 df.shape
 ```
-![Alt text](image-1.png)
+![Alt text](image-1.png) 
+
 Jumlah barisnya yaitu 5001 dan jumlah kolomnya ada 8.
 
 - Selanjutnya kita cek apakah ada data yang duplikat pada data frame dengan menggunakan kode:
@@ -188,6 +189,7 @@ df.describe()
 df.isnull().sum()
 ```
 ![Alt text](image-7.png)
+
 tidak ada yang kosong pada data frame.
 
 - Selanjutnya kita lihat jumlah data atau nilai unik dalam kolom 'gender' menggunakan kode:
@@ -301,7 +303,7 @@ Digunakan untuk menghitung kemiringan (skewness) dari setiap kolom numerik dalam
 2. Jika skewness positif, maka ekor distribusi lebih panjang di sisi kanan dan nilai rata-rata lebih besar dari median.
 3. Jika skewness negatif, maka ekor distribusi lebih panjang di sisi kiri dan nilai rata-rata lebih kecil dari median.
 
-##EDA (Exploratory Data Analysis)
+## EDA (Exploratory Data Analysis)
 - Selanjutnya kita buat dan tampilkan  sebuah heatmap dari matriks korelasi antar kolom-kolom numerik dalam DataFrame df. Heatmap memberikan visualisasi yang baik tentang sejauh mana variabel-variabel berkorelasi satu sama lain.
 
 ```python
@@ -359,14 +361,14 @@ iplot(fig)
 Kode ini digunakan untuk membuat subplot dengan dua bagian:
 
 1. Countplot:
-- Bar plot yang menunjukkan distribusi jumlah nilai 'long_hair' dalam DataFrame df.
-- Menggunakan warna siklus "Twilight" dari plotly express.
-- Mempresentasikan jumlah 'Long Hair' dan 'Not Long Hair' dalam bentuk batang.
+    - Bar plot yang menunjukkan distribusi jumlah nilai 'long_hair' dalam DataFrame df.
+    - Menggunakan warna siklus "Twilight" dari plotly express.
+    - Mempresentasikan jumlah 'Long Hair' dan 'Not Long Hair' dalam bentuk batang.
 
 2. Pie Chart:
-- Diagram lingkaran (pie chart) yang memvisualisasikan persentase 'Long Hair' dan 'Not Long Hair' dalam DataFrame df.
-- Menggunakan warna siklus "Twilight" dari plotly express.
-- Menampilkan persentase dengan informasi label di dalam pie chart.
+    - Diagram lingkaran (pie chart) yang memvisualisasikan persentase 'Long Hair' dan 'Not Long Hair' dalam DataFrame df.
+    - Menggunakan warna siklus "Twilight" dari plotly express.
+    - Menampilkan persentase dengan informasi label di dalam pie chart.
 
 ![Alt text](image-23.png)
 
@@ -418,14 +420,14 @@ iplot(fig)
 Kode ini digunakan untuk membuat subplot dengan dua bagian:
 
 1. Countplot:
-- Bar plot yang menunjukkan distribusi jumlah nilai 'nose_wide' dalam DataFrame df.
-- Menggunakan warna siklus "Twilight" dari plotly express.
-- Mempresentasikan jumlah 'Wide Nose' dan 'Not Wide Nose' dalam bentuk batang.
+    - Bar plot yang menunjukkan distribusi jumlah nilai 'nose_wide' dalam DataFrame df.
+    - Menggunakan warna siklus "Twilight" dari plotly express.
+    - Mempresentasikan jumlah 'Wide Nose' dan 'Not Wide Nose' dalam bentuk batang.
 
 2. Pie Chart:
-1. Diagram lingkaran (pie chart) yang memvisualisasikan persentase 'Wide Nose' dan 'Not Wide Nose' dalam DataFrame df.
-2. Menggunakan warna siklus "Twilight" dari plotly express.
-3. Menampilkan persentase dengan informasi label di dalam pie chart.
+    - Diagram lingkaran (pie chart) yang memvisualisasikan persentase 'Wide Nose' dan 'Not Wide Nose' dalam DataFrame df.
+    - Menggunakan warna siklus "Twilight" dari plotly express.
+    - Menampilkan persentase dengan informasi label di dalam pie chart.
 
 ![Alt text](image-24.png)
 
@@ -477,15 +479,14 @@ iplot(fig)
 Kode ini digunakan untuk membuat subplot dengan dua bagian:
 
 1. Countplot (Bar Plot):
-- Bar plot yang menunjukkan distribusi jumlah nilai 'gender' dalam DataFrame df.
-- Menggunakan warna siklus "Twilight" dari plotly express.
-- Mempresentasikan jumlah 'Female' dan 'Male' dalam bentuk batang.
+    - Bar plot yang menunjukkan distribusi jumlah nilai 'gender' dalam DataFrame df.
+    - Menggunakan warna siklus "Twilight" dari plotly express.
+    - Mempresentasikan jumlah 'Female' dan 'Male' dalam bentuk batang.
 
 2. Pie Chart:
-
-- Diagram lingkaran (pie chart) yang memvisualisasikan persentase 'Female' dan 'Male' dalam DataFrame df.
-- Menggunakan warna siklus "Twilight" dari plotly express.
-- Menampilkan persentase dengan informasi label di dalam pie chart.
+    - Diagram lingkaran (pie chart) yang memvisualisasikan persentase 'Female' dan 'Male' dalam DataFrame df.
+    - Menggunakan warna siklus "Twilight" dari plotly express.
+    - Menampilkan persentase dengan informasi label di dalam pie chart.
 
 ![Alt text](image-25.png)
 
@@ -534,14 +535,15 @@ plt.tight_layout()
 plt.show()
 ```
 1. Subplot Pertama (axes[0]):
-- Menampilkan distribusi variabel 'nose_long' (0 atau 1) menggunakan countplot.
-- Warna plot ditentukan sebagai palet 'pastel'.
-- Judul subplot ditetapkan sebagai 'Nose Long Distribution'.
+    - Menampilkan distribusi variabel 'nose_long' (0 atau 1), 0 (No) dan 1 (Yes) menggunakan countplot.
+    - Warna plot ditentukan sebagai palet 'pastel'.
+    - Judul subplot ditetapkan sebagai 'Nose Long Distribution'.
+
 
 2. Subplot Kedua (axes[1]):
-- Menampilkan distribusi variabel 'lips_thin' (0 atau 1) menggunakan countplot.
-- Warna plot ditentukan sebagai palet 'pastel'.
--Judul subplot ditetapkan sebagai 'Lips Thin Distribution'.
+    - Menampilkan distribusi variabel 'lips_thin' (0 atau 1), 0 (No) dan 1 (Yes) menggunakan countplot.
+    - Warna plot ditentukan sebagai palet 'pastel'.
+    - Judul subplot ditetapkan sebagai 'Lips Thin Distribution'.
 
 ![Alt text](image-27.png)
 
@@ -578,7 +580,8 @@ plt.show()
 
 ![Alt text](image-29.png)
 
-##Data Preparation
+## Data Preparation
+Selanjutnya kita lanjut ke data preparation :
 - Selanjutnya mengelompokkan kolom-kolom dalam DataFrame df menjadi dua kategori berdasarkan jenis datanya: numerik (numerical) dan kategorikal (categorical). Selanjutnya, dilakukan pengisian nilai yang hilang (missing values) untuk setiap kolom.
 
 ```python
@@ -705,14 +708,17 @@ print("Best Parameters: " + str(knn_cv.best_params_))
 ```
 ![Alt text](image-38.png)
 
-- Selanjutnya Membuat tabel silang  (cross-tabulation) antara nilai aktual (y_test) dan nilai yang diprediksi (y_pred) pada model.
 
+
+### Simulai Data
 ```python
-pd.crosstab(y_test, y_pred, rownames=['True'], colnames=['gender'], margins=True, margins_name="Total")
+input_data = np.array([[1, 11.8, 6.1, 1, 0, 1, 1]])
+prediction = model.predict(input_data)
+print('Prediksi Gender = ', prediction)
 ```
-![Alt text](image-39.png)
+![Alt text](image-44.png)
 
-### Evaluation
+## Evaluation
 - Membuat dan Melatih Model KNN:
 
 ```python
@@ -721,15 +727,76 @@ knn.fit(x_train, y_train)
 ```
 
 - Memprediksi dan Mengevaluasi Model:
+
+Tabel silang  (cross-tabulation) antara nilai aktual (y_test) dan nilai yang diprediksi (y_pred) pada model.
+
+```python
+pd.crosstab(y_test, y_pred, rownames=['True'], colnames=['gender'], margins=True, margins_name="Total")
+```
+![Alt text](image-39.png)
+
+**1. Menggunakan Confusion Matrix:**
+
+    Confusion Matrix adalah sebuah matriks yang digunakan untuk mengevaluasi kinerja dari suatu sistem klasifikasi. Matriks ini membandingkan hasil klasifikasi model dengan nilai sebenarnya dari data yang diuji.
+
+    Berikut adalah komponen-komponen utama dari Confusion Matrix:
+
+    - True Positive (TP):
+        Jumlah observasi yang benar-benar positif dan diklasifikasikan sebagai positif oleh model.
+
+    - True Negative (TN):
+        Jumlah observasi yang benar-benar negatif dan diklasifikasikan sebagai negatif oleh model.
+
+    - False Positive (FP):
+        Jumlah observasi yang sebenarnya negatif, tetapi salah diklasifikasikan sebagai positif oleh model (kesalahan Type I).
+
+    - False Negative (FN):
+        Jumlah observasi yang sebenarnya positif, tetapi salah diklasifikasikan sebagai negatif oleh model (kesalahan Type II).
+        
+        ![Alt text](image-52.png)
+
+Ini merupakan Hasil Confussion Matrix dari Prediksi Gender Mengunakan KNN. 
+Kita bisa membuatnya menggunakan kode:
+
 ```python
 print(confusion_matrix(y_test, y_pred))
 ```
 ![Alt text](image-40.png)
 
+**2. Classification Report**
+Dengan menggunakan informasi dari Confusion Matrix, kita dapat menghitung berbagai metrik evaluasi seperti Akurasi, Presisi, Recall, dan F1 Score untuk mengevaluasi kinerja model klasifikasi.
+
+![Alt text](image-53.png)
+
+Ini merupakan Classification Report dari studi kasus ini, kita bisa membuatnya juga dengan menggunakan kode:
+
 ```python
 print(classification_report(y_test, y_pred))
 ```
 ![Alt text](image-41.png)
+
+Classification Report memberikan informasi evaluasi klasifikasi untuk setiap kelas yang ada dalam dataset. Hal ini sangat berguna ketika data tidak seimbang (imbalanced), di mana jumlah observasi dalam setiap kelas bisa berbeda. Dengan melihat metrik untuk setiap kelas, kita dapat mengetahui kelas mana yang mungkin memiliki performa yang lebih rendah dan memerlukan perhatian khusus.
+
+Classification Report menyajikan metrik-metrik seperti Presisi, Recall, dan F1 Score yang memberikan informasi tentang trade-off antara True Positive, False Positive, dan False Negative. Misalnya, Presisi memberikan informasi tentang seberapa akurat model dalam mengklasifikasikan positif, sedangkan Recall memberikan informasi tentang seberapa baik model dalam menangkap semua instance positif yang sebenarnya.
+
+**3. Cv scores**
+Cross-validation (CV) scores adalah elemen penting dalam evaluasi model, membantu memastikan bahwa performa model dapat diukur dengan lebih reliabel. Proses ini melibatkan beberapa langkah:
+
+    - **Pembagian Data:**
+    Data dibagi menjadi beberapa subset yang disebut lipatan atau "folds." Proses ini memastikan bahwa setiap bagian data digunakan baik sebagai data pelatihan maupun data pengujian.
+
+    - **Pelatihan dan Pengujian Model:**
+    Model dilatih menggunakan beberapa kombinasi lipatan sebagai data pelatihan dan diuji pada lipatan yang tersisa sebagai data pengujian. Proses ini diulangi sejumlah lipatan, dan skor kinerja dicatat pada setiap iterasi.
+
+    - **CV Scores:**
+     CV scores adalah hasil dari metrik evaluasi model pada setiap lipatan. Biasanya, ini mencakup akurasi, presisi, recall, F1-score, atau metrik evaluasi lainnya yang relevan dengan jenis masalah yang dihadapi.
+
+    - **Agregasi Skor:**
+     CV scores dari setiap lipatan dapat diambil rata-rata atau agregasi lainnya untuk memberikan skor kinerja akhir model. Ini membantu mengurangi variabilitas dan memberikan gambaran yang lebih konsisten tentang kemampuan model untuk melakukan generalisasi pada data baru.
+
+Pentingnya CV scores dalam evaluasi model terletak pada kemampuannya untuk memberikan ukuran kinerja yang lebih konsisten dan dapat dipercaya. Proses ini membantu dalam pemilihan model yang stabil dan menilai seberapa baik model dapat menangani variasi dalam data. Meskipun CV scores memberikan wawasan yang kuat, evaluasi akhir sering melibatkan uji pada set data pengujian yang terpisah untuk memastikan bahwa model dapat berkinerja dengan baik pada data yang belum pernah dilihat sebelumnya.
+
+Berikut Cv scores dari model ini, kita bisa membuatnya dengan menggunkan kode:
 
 ```python
 cv_scores = cross_val_score(knn, x, y, cv=5)
@@ -737,6 +804,33 @@ print(cv_scores)
 print("\nAverage 5-Fold Score: {}".format(np.mean(cv_scores)))
 ```
 ![Alt text](image-42.png)
+
+**4. ROC AUC Score dan Accuracy Score**
+
+- **ROC AUC Score:**
+
+ROC AUC (Receiver Operating Characteristic Area Under the Curve) adalah metrik yang mengukur seberapa baik model mampu membedakan antara kelas positif dan negatif. Semakin tinggi nilai ROC AUC, semakin baik model dalam memisahkan kelas-kelas tersebut. Dalam konteks ini, kode menghitung dan mencetak ROC AUC Score untuk model K-Nearest Neighbors.
+
+ROC AUC Score dihitung dari kurva ROC, yang mengukur performa model dalam membedakan antara kelas positif dan negatif. Rumusnya adalah:
+
+\[ \text{ROC AUC Score} = \text{AUC} = \int \text{ROC curve} \, dx \]
+
+Di sini, ROC curve adalah kurva yang menggambarkan hubungan antara True Positive Rate (TPR atau Recall) dan False Positive Rate (FPR). 
+
+
+- **Accuracy Score:**
+
+Accuracy Score mengukur seberapa akurat model dalam memprediksi kelas target. Ini adalah rasio antara jumlah prediksi yang benar dengan total jumlah prediksi. Dalam konteks ini, kode menghitung dan mencetak Accuracy Score untuk model K-Nearest Neighbors.
+
+Namun, penting untuk dicatat bahwa evaluasi ini mungkin bukan evaluasi akhir yang menyeluruh.
+
+Accuracy Score dihitung dengan rumus sederhana sebagai rasio antara prediksi yang benar (True Positives + True Negatives) dengan total jumlah prediksi (semua empat elemen matriks kebingungan). Rumusnya adalah:
+
+\[ \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{True Positives + False Positives + True Negatives + False Negatives}} \]
+
+Accuracy memberikan gambaran tentang seberapa akurat model dalam memprediksi seluruh kelas.
+
+Berikut merupakan ROC dan Akurasi dari Studi Kasus ini, kita bisa membuatnya menggunakan kode:
 
 ```python
 y_pred_proba=knn.predict_proba(x_test)[:,1]
@@ -747,17 +841,33 @@ print("\n accuracy score : {}".format(accuracy_score(y_test,y_pred)))
 
 ![Alt text](image-43.png)
 
+**5. Error Rate**
+
+Error Rate adalah metrik evaluasi yang menggambarkan persentase dari keseluruhan prediksi yang salah yang dilakukan oleh model. Metrik ini dihitung dengan membagi jumlah prediksi yang salah dengan total jumlah prediksi. Meskipun kurang umum digunakan dibandingkan dengan metrik seperti akurasi, presisi, recall, dan F1-score, Error Rate memiliki beberapa kegunaan dan relevansi:
+
+ **1. Menyajikan Perspektif Kesalahan:**
+    Error Rate memberikan gambaran tentang seberapa sering model melakukan kesalahan. Seberapa besar persentase dari seluruh prediksi yang keliru dapat membantu pemahaman tentang seberapa baik model dapat menangani kasus yang kompleks atau langka.
+
+ **2.Komplementer dengan Akurasi:**
+    Meskipun akurasi memberikan informasi tentang seberapa baik model dapat memprediksi dengan benar, Error Rate memberikan perspektif sebaliknya. Dengan melihat keduanya bersama-sama, kita dapat memiliki pemahaman yang lebih lengkap tentang performa model.
+
+**3. Relevan pada Kasus Ketidakseimbangan Kelas:**
+   Pada kasus di mana kelas-kelas dalam data tidak seimbang (imbalance), akurasi dapat menjadi tidak informatif. Error Rate dapat memberikan wawasan tambahan karena fokus pada kesalahan yang dilakukan oleh model pada kelas-kelas yang kurang banyak.
+
+**Rumus Error Rate sederhana dan dapat dihitung sebagai berikut:**
+
+\[ \text{Error Rate} = \frac{\text{Jumlah Prediksi Salah}}{\text{Total Jumlah Prediksi}} \]
+
+Di mana:
+- "Jumlah Prediksi Salah" adalah jumlah prediksi yang tidak benar oleh model.
+- "Total Jumlah Prediksi" adalah jumlah total prediksi yang dilakukan oleh model.
+
+Error Rate memberikan persentase kesalahan relatif terhadap seluruh prediksi. Semakin rendah nilai Error Rate, semakin baik performa model, karena menunjukkan bahwa model memiliki lebih sedikit kesalahan prediksi relatif terhadap total prediksi yang dilakukan.
+
+
 Hasil evaluasi termasuk matriks kebingungan, laporan klasifikasi, skor validasi silang, skor ROC AUC, dan skor akurasi. Metrik-metrik ini memberikan gambaran tentang seberapa baik model KNN dapat melakukan prediksi pada data uji (x_test dan y_test).
 
-###Simulai Data
-```python
-input_data = np.array([[1, 11.8, 6.1, 1, 0, 1, 1]])
-prediction = model.predict(input_data)
-print('Prediksi Gender = ', prediction)
-```
-![Alt text](image-44.png)
-
-##Visualisasi Hasil Modeling dan Evaluation
+## Visualisasi Hasil Modeling dan Evaluation
 
 - Visualisasi Confusion Matriks:
 
@@ -921,24 +1031,24 @@ print(f"AUC for k=3: {roc_auc:.4f}")
 
 Blok kode tersebut digunakan untuk membuat dan mengevaluasi kurva Receiver Operating Characteristic (ROC) untuk model K-Nearest Neighbors (KNN) dengan nilai `k=3`. Berikut adalah penjelasan singkatnya:
 
-1. **Konversi Label Categorical ke Format Biner:**
+**1. Konversi Label Categorical ke Format Biner:**
    - Menggunakan `LabelBinarizer` untuk mengubah label kategori menjadi format biner.
    - `y_train_bin` dan `y_test_bin` menjadi representasi biner dari label pelatihan dan uji.
 
-2. **Pelatihan Model KNN:**
+**2. Pelatihan Model KNN:**
    - Membuat model KNN dengan jumlah tetangga (`k_value`) sebanyak 3.
    - Melatih model menggunakan data pelatihan (`x_train` dan `y_train_bin`).
 
-3. **Prediksi Probabilitas dan Perhitungan ROC Curve:**
+**3. Prediksi Probabilitas dan Perhitungan ROC Curve:**
    - Memprediksi probabilitas kelas positif untuk data uji (`x_test`) menggunakan model KNN.
    - Menghitung nilai False Positive Rate (FPR), True Positive Rate (TPR), dan ambang batas (thresholds) untuk membuat kurva ROC.
    - Menghitung luas area di bawah kurva ROC (AUC) untuk mengevaluasi kinerja model.
 
-4. **Plotting ROC Curve:**
+**4. Plotting ROC Curve:**
    - Membuat plot ROC curve dengan nilai AUC yang ditampilkan di grafik.
    - Garis putus-putus merepresentasikan performa model yang memprediksi secara acak.
 
-5. **Menampilkan AUC:**
+**5. Menampilkan AUC:**
    - Mencetak nilai AUC untuk model KNN dengan `k=3`.
 
 Analisis ROC curve dan AUC membantu mengukur sejauh mana model KNN dapat membedakan antara kelas positif dan negatif. Semakin tinggi nilai AUC, semakin baik model dalam memprediksi kelas positif.
@@ -991,29 +1101,30 @@ print(result)
 ```
 Fungsi `knn_algorithm` di atas digunakan untuk mengilustrasikan algoritma K-Nearest Neighbors (KNN) dengan parameter k tertentu pada dataset karakteristik wajah. Berikut adalah penjelasan singkat hasil eksekusi kode di atas:
 
-1. **Perhitungan Jarak Euclidean:**
+**1. Perhitungan Jarak Euclidean:**
    - Menghitung jarak Euclidean antara titik yang akan diprediksi (`[x1, x2]`) dan setiap titik dalam dataset menggunakan rumus Euclidean.
 
-2. **Pemilihan K Tetangga Terdekat:**
+**2. Pemilihan K Tetangga Terdekat:**
    - Mengurutkan jarak Euclidean dan memilih k tetangga terdekat.
 
-3. **Prediksi Kelas:**
+**3. Prediksi Kelas:**
    - Mengambil label kelas dari tetangga terdekat.
    - Jika kelas bersifat numerik, memetakan warna sesuai dengan kelas; jika tidak, menggunakan warna abu-abu.
 
-4. **Visualisasi Scatter Plot:**
+**4. Visualisasi Scatter Plot:**
    - Membuat scatter plot dengan warna berdasarkan label kelas pada dataset.
    - Menyorot titik-titik tetangga terdekat dengan ukuran yang lebih besar dan warna yang berbeda.
    - Titik yang akan diprediksi ditandai dengan bintang (*).
 
-5. **Menampilkan Hasil Prediksi:**
+**5. Menampilkan Hasil Prediksi:**
    - Menampilkan hasil prediksi kelas pada console.
 
 Dengan memanggil fungsi `knn_algorithm` dengan nilai k tertentu dan koordinat titik prediksi (`x1_value`, `x2_value`), kita dapat melihat visualisasi serta hasil prediksi kelas dari algoritma KNN pada dataset karakteristik wajah.
 
+
 ![Alt text](image-51.png)
 
-##Simpan Model
+## Simpan Model
 Langkah Terakhir yaitu kita Simpan Model jangan lupa untuk menyimpan model seperti berikut:
 
 ```python
