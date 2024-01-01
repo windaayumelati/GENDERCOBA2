@@ -506,14 +506,14 @@ plt.tight_layout()
 plt.show()
 ```
 1. Subplot Pertama (axes[0]):
-- Menampilkan distribusi lebar dahi (forehead_width_cm) dengan menggunakan histogram dan kurva kepadatan (kernel density estimate - kde).
-- Warna plot ditentukan sebagai 'gold'.
-- Judul subplot ditetapkan sebagai 'Forehead Width Distribution'.
+  - Menampilkan distribusi lebar dahi (forehead_width_cm) dengan menggunakan histogram dan kurva kepadatan (kernel density estimate - kde).
+  - Warna plot ditentukan sebagai 'gold'.
+  - Judul subplot ditetapkan sebagai 'Forehead Width Distribution'.
 
 2. Subplot Kedua (axes[1]):
-- Menampilkan distribusi tinggi dahi (forehead_height_cm) dengan menggunakan histogram dan kurva kepadatan (kde).
-- Warna plot ditentukan sebagai 'lightcoral'.
-- Judul subplot ditetapkan sebagai 'Forehead Height Distribution'.
+  - Menampilkan distribusi tinggi dahi (forehead_height_cm) dengan menggunakan histogram dan kurva kepadatan (kde).
+  - Warna plot ditentukan sebagai 'lightcoral'.
+  - Judul subplot ditetapkan sebagai 'Forehead Height Distribution'.
 
 ![Alt text](image-26.png)
 
